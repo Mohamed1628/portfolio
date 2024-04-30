@@ -1,4 +1,4 @@
-baseURL: https://mohamedalzoubi.com/
+baseURL: https://mohamedalzoubi.onrender.com/
 languageCode: en-us
 title: Mohamed Alzoubi
 paginate: 5
@@ -72,16 +72,16 @@ params:
 
   # home-info mode
   homeInfoParams:
-    Title: "Hi there \U0001F44B"
-    Content: Welcome to my blog
+    Title: "Hi there, \U0001F44B"
+    Content: My name is Mohamed Alzoubi and I am an electrical engineering student. On this page, I will try to share as many projects as possible. Feel free to connect with me on any of the platforms linked below.
 
   socialIcons:
-    - name: x
-      url: "https://x.com/"
-    - name: stackoverflow
-      url: "https://stackoverflow.com"
+    - name: youtube
+      url: "https://www.youtube.com/channel/UC8TPiXIQG9Jco0toAjMpmeg"
+    - name: linkedin
+      url: "https://www.linkedin.com/in/mohamedalzoubi1/"
     - name: github
-      url: "https://github.com/"
+      url: "https://github.com/Mohamed1628"
 
   analytics:
     google:
