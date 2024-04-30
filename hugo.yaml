@@ -124,7 +124,7 @@ menu:
       weight: 20
     - identifier: Projects
       name: My Projects
-      url: https://mohamedalzoubi/projects.com
+      url: https://mohamedalzoubi.onrender.com/projects
       weight: 30
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
