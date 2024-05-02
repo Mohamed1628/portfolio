@@ -42,16 +42,16 @@ params:
   tocopen: false
 
   assets:
-    # disableHLJS: true # to disable highlight.js
+    disableHLJS: true # to disable highlight.js
     # disableFingerprinting: true
-    favicon: "<link / abs url>"
-    favicon16x16: "<link / abs url>"
-    favicon32x32: "<link / abs url>"
-    apple_touch_icon: "<link / abs url>"
-    safari_pinned_tab: "<link / abs url>"
+    # favicon: "<link / abs url>"
+    # favicon16x16: "<link / abs url>"
+    # favicon32x32: "<link / abs url>"
+    # apple_touch_icon: "<link / abs url>"
+    # safari_pinned_tab: "<link / abs url>"
 
   label:
-    text: "Home"
+    text: "Mohamed Alzoubi"
     icon: /apple-touch-icon.png
     iconHeight: 35
 
@@ -72,7 +72,7 @@ params:
 
   # home-info mode
   homeInfoParams:
-    Title: "Hi there, \U0001F44B"
+    Title: "Hi there! \U0001F44B"
     Content: My name is Mohamed Alzoubi and I am an electrical engineering student. On this page, I will try to share as many projects as possible. Feel free to connect with me on any of the platforms linked below.
 
   socialIcons:
@@ -114,17 +114,17 @@ params:
     keys: ["title", "permalink", "summary", "content"]
 menu:
   main:
-    - identifier: categories
-      name: categories
-      url: /categories/
-      weight: 10
-    - identifier: tags
-      name: tags
-      url: /tags/
-      weight: 20
     - identifier: Projects
-      name: My Projects
-      url: https://mohamedalzoubi.onrender.com/projects
+      name: Projects
+      url: /projects/
+      weight: 10
+    - identifier: Search
+      name: Search
+      url: /search/
+      weight: 20
+    - identifier: Archive
+      name: Archive
+      url: /archive/
       weight: 30
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
