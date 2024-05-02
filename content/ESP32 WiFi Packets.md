@@ -25,7 +25,7 @@ ShowWordCount: true
 ShowRssButtonInSectionTermList: true
 UseHugoToc: true
 cover:
-    image: "https://github.com/Mohamed1628/portfolio/assets/images/ESP32.png" # image path/url
+    image: "https://github.com/Mohamed1628/portfolio/blob/main/assets/images/ESP32.png" # image path/url
     alt: "ESP32" # alt text
     caption: "ESP32 with 4 LEDs: TCP (Green) | UDP (Blue) | ICMP (Red) | OTHER (Yellow)" # display caption under cover
     relative: false # when using page bundles set this to true
