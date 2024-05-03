@@ -41,6 +41,13 @@ This program can be used to see TCP, UDP, ICMP, and other incoming packets to an
 ## Wiring
 4 LEDs (Red, Green, Blue, Yellow) to represent 4 packet types (ICMP, TCP, UDP, and Other). Any GPIO pins can be used, in this case, GPIO 2, 5, 21, and 23 were used.
 
-![wiring](images/wiring.jpg)
+![wiring](images/wiring.png)
+
+---
+
+## Software
+- Virtual Studio Code
+- ESP-IDF
+- PlatformIO
 
 ---
