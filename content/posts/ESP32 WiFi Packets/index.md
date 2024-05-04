@@ -29,7 +29,7 @@ cover:
     alt: "ESP32" # alt text
     caption: "ESP32 with 4 LEDs: TCP (Green) | UDP (Blue) | ICMP (Red) | OTHER (Yellow)" # display caption under cover
     relative: false # when using page bundles set this to true
-    hidden: true # only hide on current single page
+    hidden: false # only hide on current single page
 editPost:
     URL: "https://github.com/Mohamed1628/ESP32-WiFi-Packets"
     Text: "Suggest Changes" # edit text
