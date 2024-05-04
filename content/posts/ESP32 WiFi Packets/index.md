@@ -25,11 +25,11 @@ ShowWordCount: true
 ShowRssButtonInSectionTermList: true
 UseHugoToc: true
 cover:
-    image: "images/esp32.png" # image path/url
+    image: "https://github.com/Mohamed1628/ESP32-WiFi-Packets/assets/98979579/017948c3-cd33-46de-9356-b5997f6d9371" # image path/url
     alt: "ESP32" # alt text
     caption: "ESP32 with 4 LEDs: TCP (Green) | UDP (Blue) | ICMP (Red) | OTHER (Yellow)" # display caption under cover
     relative: false # when using page bundles set this to true
-    hidden: false # only hide on current single page
+    hidden: true # only hide on current single page
 editPost:
     URL: "https://github.com/Mohamed1628/ESP32-WiFi-Packets"
     Text: "Suggest Changes" # edit text
@@ -64,5 +64,8 @@ This is the pinout for the ESP32-WROOM-32 board. If you would like to use a diff
 ### Source Code: 
 See all code and setup instructions in my GitHub repository:
 https://github.com/Mohamed1628/ESP32-WiFi-Packets
+
+### YouTube Demonstration:
+
 
 ---
