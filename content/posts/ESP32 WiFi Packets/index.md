@@ -61,11 +61,11 @@ This is the pinout for the ESP32-WROOM-32 board. If you would like to use a diff
 - ESP-IDF
 - PlatformIO
 
-### Source Code: 
+### Source Code
 See all code and setup instructions in my GitHub repository:
 https://github.com/Mohamed1628/ESP32-WiFi-Packets
 
-### YouTube Demonstration:
+### YouTube Demonstration
 
 
 ---
