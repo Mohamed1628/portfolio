@@ -4,6 +4,7 @@ date: 2024-05-02T11:30:03+00:00
 # weight: 1
 # aliases: ["/first"]
 tags: ["ESP32", "Networking", "Communication Protocols"]
+categories: ["index"]
 author: "Mohamed Alzoubi"
 # author: ["Me", "You"] # multiple authors
 showToc: true
@@ -25,11 +26,11 @@ ShowWordCount: true
 ShowRssButtonInSectionTermList: true
 UseHugoToc: true
 cover:
-    image: "images/esp32.png" # image path/url
+    image: "https://images.unsplash.com/photo-1599369553272-29f89a9d4696?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" # image path/url
     alt: "ESP32" # alt text
     caption: "ESP32 with 4 LEDs: TCP (Green) | UDP (Blue) | ICMP (Red) | OTHER (Yellow)" # display caption under cover
     relative: false # when using page bundles set this to true
-    hidden: true # only hide on current single page
+    # hidden: true # only hide on current single page
 editPost:
     URL: "https://github.com/Mohamed1628/ESP32-WiFi-Packets"
     Text: "Suggest Changes" # edit text
