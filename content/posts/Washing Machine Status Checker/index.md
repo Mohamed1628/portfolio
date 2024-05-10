@@ -28,7 +28,7 @@ UseHugoToc: true
 cover:
     image: "cover.png" # image path/url
     alt: "App Layout" # alt text
-    caption: "Dashboard for Cloud App" # display caption under cover
+    caption: "ESP32 connected to microphone and humidity sensor" # display caption under cover
     relative: false # when using page bundles set this to true
     # hidden: true # only hide on current single page
 editPost:
@@ -54,7 +54,7 @@ It does this using a microphone sensor to listen for the dinging noise at the en
 ## Wiring
 4 LEDs (Red, Green, Blue, Yellow) to represent 4 packet types (ICMP, TCP, UDP, and Other). Any GPIO pins can be used, in this case, GPIO 2, 5, 21, and 23 were used (NodeMCU ESP-12E). The 220 Ω Resistors are optional.
 
-# ![wiring](images/wiring.png)
+![wiring](images/wiring.png)
 
 ![pinout](images/pinout.png)
 This is the pinout for the ESP8266 NodeMCU ESP-12E board. If you would like to use a different ESP8266 board, make sure to check your own pinout online.
