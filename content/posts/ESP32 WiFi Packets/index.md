@@ -37,8 +37,6 @@ editPost:
     appendFilePath: true # to append file path to Edit link
 ---
 
-![esp32](images/esp32.png)
-
 This program can be used to see TCP, UDP, ICMP, and other incoming packets to an ESP32 board that is connected to a WiFi network. A different color LED is also turned on when different protocol packets are received (red for ICMP, green for TCP, blue for UDP, and yellow for others). It also outputs the source IP address of each packet. This program uses Visual Studio Code and two extensions: ESP-IDF (Espressif IoT Development Framework) and PlatformIO.
 
 ---
@@ -69,6 +67,6 @@ See all code and setup instructions in my GitHub repository:
 https://github.com/Mohamed1628/ESP32-WiFi-Packets
 
 ### YouTube Demonstration
-
+{{< youtube v_z1zheDOR0 >}}
 
 ---
