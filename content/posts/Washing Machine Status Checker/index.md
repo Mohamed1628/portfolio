@@ -1,9 +1,9 @@
 ---
 title: "Washing Machine Status Checker"
-date: 2023-11-28T11:30:03+00:00
+date: 2024-3-15T11:30:03+00:00
 # weight: 1
 # aliases: ["/first"]
-tags: ["ESP8266", "IoT", "Cloud"]
+tags: ["Arduino Uno", "CAN", "Communication Protocols"]
 categories: ["index"]
 author: "Mohamed Alzoubi"
 # author: ["Me", "You"] # multiple authors
@@ -12,7 +12,7 @@ TocOpen: true
 draft: false
 hidemeta: false
 comments: true
-description: "This program uses an ESP8266 to report on the status of a washing machine using a microphone and humidity sensor."
+description: "This box can be used to verify that an OBDII device can both send and recieve CAN data frames."
 canonicalURL: "https://canonical.url/to/page"
 disableHLJS: true # to disable highlightjs
 disableShare: true
@@ -28,7 +28,7 @@ UseHugoToc: true
 cover:
     image: "cover.png" # image path/url
     alt: "Wiring" # alt text
-    caption: "ESP32 connected to microphone and humidity sensor" # display caption under cover
+    caption: "CAN Communication Troubleshooter" # display caption under cover
     relative: false # when using page bundles set this to true
     # hidden: true # only hide on current single page
 editPost:
@@ -46,9 +46,10 @@ It does this using a microphone sensor to listen for the dinging noise at the en
 
 ---
 ## Materials
-- ESP8266 NodeMCU ESP-12E 1.0
-- Electret Microphone Amplifier MAX4466 Module
-- DHT11 Temperature-Humidity Sensor Module
+- Arduino Uno R3
+- MCP2515 CAN Bus Module
+- OBDII Female Port
+- Power Supplies
 - Jumper Wires
 
 ## Wiring
@@ -57,19 +58,15 @@ It does this using a microphone sensor to listen for the dinging noise at the en
 ![wiring](images/wiring.png)
 
 ![pinout](images/pinout.png)
-This is the pinout for the ESP8266 NodeMCU ESP-12E board. If you would like to use a different ESP8266 board, make sure to check your own pinout online.
+This is the pinout for the Arduino Uno R3 board. If you would like to use a different Uno board, make sure to check your own pinout online.
 
 ---
 
 ## Software
-- Arduino Cloud
-- Arduino Create Agent
+- Arduino IDE
 
 ### Source Code
 See all code and setup instructions in my GitHub repository:
 https://github.com/Mohamed1628/Washing-Machine-Status
-
-### YouTube Demonstration + Explanation
-{{< youtube "Php4FqPXtiM" >}}
 
 ---

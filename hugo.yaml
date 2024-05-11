@@ -73,7 +73,7 @@ params:
   # home-info mode
   homeInfoParams:
     Title: "Hello! \U0001F44B"
-    Content: My name is Mohamed Alzoubi and I am an electrical engineering student. On this page, I will try to share as many projects as possible. Feel free to connect with me on any of the platforms linked below.
+    Content: My name is Mohamed Alzoubi and I am an electrical and computer engineering student. On this page, I will try to share as many projects as possible. Feel free to connect with me on any of the platforms linked below.
 
   socialIcons:
     - name: youtube
