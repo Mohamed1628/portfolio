@@ -27,7 +27,7 @@ ShowRssButtonInSectionTermList: true
 UseHugoToc: true
 cover:
     image: "cover.png" # image path/url
-    alt: "App Layout" # alt text
+    alt: "Wiring" # alt text
     caption: "ESP32 connected to microphone and humidity sensor" # display caption under cover
     relative: false # when using page bundles set this to true
     # hidden: true # only hide on current single page
@@ -70,6 +70,6 @@ See all code and setup instructions in my GitHub repository:
 https://github.com/Mohamed1628/Washing-Machine-Status
 
 ### YouTube Demonstration + Explanation
-{{< youtube "oZLEjFB-2dc" >}}
+{{< youtube "Php4FqPXtiM" >}}
 
 ---
