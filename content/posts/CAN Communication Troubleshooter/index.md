@@ -1,6 +1,6 @@
 ---
 title: "CAN Communication Troubleshooter"
-date: 2024-3-15T11:30:03+00:00
+date: 2024-03-15T11:30:03+00:00
 # weight: 1
 # aliases: ["/first"]
 tags: ["Arduino Uno", "CAN Communication", "Communication Protocols"]
@@ -67,6 +67,9 @@ This is the pinout for the Arduino Uno R3 board. If you would like to use a diff
 
 ### Source Code
 See all code and setup instructions in my GitHub repository:
-https://github.com/Mohamed1628/Washing-Machine-Status
+https://github.com/Mohamed1628/CAN-Troubleshooter
+
+### Included Libraries
+- mcp_can by coryjfowler (1.5.1)
 
 ---
