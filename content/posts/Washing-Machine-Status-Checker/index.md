@@ -4,7 +4,7 @@ date: 2023-11-28T11:30:03+00:00
 # weight: 1
 # aliases: ["/first"]
 tags: ["ESP8266", "IoT", "Cloud"]
-categories: ["index"]
+categories: ["Projects"]
 author: "Mohamed Alzoubi"
 # author: ["Me", "You"] # multiple authors
 showToc: true

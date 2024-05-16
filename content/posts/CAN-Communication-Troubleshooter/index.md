@@ -4,7 +4,7 @@ date: 2024-03-15T11:30:03+00:00
 # weight: 1
 # aliases: ["/first"]
 tags: ["Arduino Uno", "CAN Communication", "Communication Protocols"]
-categories: ["index"]
+categories: ["Projects"]
 author: "Mohamed Alzoubi"
 # author: ["Me", "You"] # multiple authors
 showToc: true
