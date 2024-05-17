@@ -60,7 +60,10 @@ This is the pinout for the ESP8266 NodeMCU ESP-12E board. If you would like to u
 - Arduino Create Agent
 
 ### Source Code
-```
+See code and setup instructions in my GitHub repository:
+https://github.com/Mohamed1628/Washing-Machine-Status
+
+```c++
 #include "thingProperties.h"
 #include "DHT.h"
 #define DHTPIN 5
@@ -147,8 +150,6 @@ void onCycleTimeChange()  {
   // 12:05pm + 45 minute cycle = 12:50 - 5 minutes arduino has been running = 12:45pm
 }
 ```
-See code and setup instructions in my GitHub repository:
-https://github.com/Mohamed1628/Washing-Machine-Status
 
 ### YouTube Demonstration + Explanation
 {{< youtube "Php4FqPXtiM" >}}
