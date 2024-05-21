@@ -32,20 +32,17 @@ cover:
     relative: false # when using page bundles set this to true
     # hidden: true # only hide on current single page
 editPost:
-    URL: "https://github.com/Mohamed1628/Washing-Machine-Status"
+    URL: "https://github.com/Mohamed1628/CAN-Troubleshooter"
     Text: "Suggest Changes" # edit text
     appendFilePath: false # to append file path to Edit link
 ---
-![CAN](images/CAN.png)
 
-This program lets the user know:
-- When a cycle finished
-- When a cycle **will** finish
-- When the door was opened
+This program lets the user know if a device can properly send and recieve CAN data frames.
 
-It does this using a microphone sensor to listen for the dinging noise at the end of a cycle as well as a humidity sensor to measure when the humidity spikes indicating that steam/vapor is coming out of a freshly opened washing machine. This of course is very simple 
+It does this using a CAN bus module that allows the Arduino Uno to communicate with the device over the CAN High/Low pins of the OBD port.
 
 ---
+
 ## Materials
 - Arduino Uno R3
 - MCP2515 CAN Bus Module
@@ -54,9 +51,12 @@ It does this using a microphone sensor to listen for the dinging noise at the en
 - Jumper Wires
 
 ## Wiring
-4 LEDs (Red, Green, Blue, Yellow) to represent 4 packet types (ICMP, TCP, UDP, and Other). Any GPIO pins can be used, in this case, GPIO 2, 5, 21, and 23 were used (NodeMCU ESP-12E). The 220 Ω Resistors are optional.
-
 ![wiring](images/wiring.png)
+
+Also note that, when not being programmed, the Uno is powered with an external 9V 3A power supply. Also, depending on the device you are testing, it will also need to be powered to sense that it is currently connected to something (our box). You will need an extra power supply for this. Or if you have a larger power supply you can use a simple voltage divider circuit. For example, if you have a device that normally requires 12V, then you can use one 20V power supply. The 20V would split to be 9V for the Arduino and 12V for the device. In my experience, if the device was not being powered and I sent it some frames, I would get no response back from the device. So try powering your device as well.
+
+![example](images/example.png)
+Here is an example of what I am talking about. 2 Power Supplies (or just one with a voltage divider).
 
 ![pinout](images/pinout.png)
 This is the pinout for the Arduino Uno R3 board. If you would like to use a different Uno board, make sure to check your own pinout online.
@@ -64,13 +64,13 @@ This is the pinout for the Arduino Uno R3 board. If you would like to use a diff
 ---
 
 ## Software
-- Arduino IDE
+You only need the Arduino IDE for this project.
 
 ### Source Code
 See all code and setup instructions in my GitHub repository:
 https://github.com/Mohamed1628/CAN-Troubleshooter
 
 ### Included Libraries
-- mcp_can by coryjfowler (1.5.1)
+- mcp_can by coryjfowler (1.5.1 as of March 2024)
 
 ---
