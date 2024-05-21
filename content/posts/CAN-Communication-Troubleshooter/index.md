@@ -72,5 +72,5 @@ https://github.com/Mohamed1628/CAN-Troubleshooter
 
 ### Included Libraries
 - mcp_can by coryjfowler (1.5.1 as of March 2024)
-
+- SPI by Arduino
 ---

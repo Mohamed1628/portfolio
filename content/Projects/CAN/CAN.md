@@ -58,7 +58,7 @@ Also note that, when not being programmed, the Uno is powered with an external 9
 ![example](images/example.png)
 Here is an example of what I am talking about. 2 Power Supplies (or just one with a voltage divider).
 
-![pinout](images/pinout.png)
+![pinout](Projects/CAN/images/pinout.png)
 This is the pinout for the Arduino Uno R3 board. If you would like to use a different Uno board, make sure to check your own pinout online.
 
 ---
@@ -72,5 +72,5 @@ https://github.com/Mohamed1628/CAN-Troubleshooter
 
 ### Included Libraries
 - mcp_can by coryjfowler (1.5.1 as of March 2024)
-
+- SPI by Arduino
 ---

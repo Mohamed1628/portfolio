@@ -37,8 +37,8 @@ editPost:
     appendFilePath: false # to append file path to Edit link
 ---
 This program lets the user know:
-- When a cycle finished
 - When a cycle **will** finish
+- When a cycle finished
 - When the door was opened
 It does this using a microphone sensor to listen for the dinging noise at the end of a cycle as well as a humidity sensor to measure when the humidity spikes indicating that steam/vapor is coming out of a freshly opened washing machine. This of course is very simple 
 ---
