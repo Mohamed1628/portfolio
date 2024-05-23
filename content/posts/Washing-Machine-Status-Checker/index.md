@@ -49,7 +49,7 @@ It does this using a microphone sensor to listen for the dinging noise at the en
 - Jumper Wires
 
 ## Wiring
-
+---
 The DHT11 humidity sensor and microphone module are both powered with 3.3V pins. For the humidity sensor, any GPIO pins can be used. In this case, D1 (GPIO 5) was used. The microphone module, however, must be connected to the one and only analog pin on the NodeMCU which is the A0 pin (GPIO 17).
 ![wiring](images/wiring.png)
 ![pinout](images/pinout.png)
