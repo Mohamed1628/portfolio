@@ -22,13 +22,14 @@ searchHidden: false
 ShowReadingTime: true
 ShowBreadCrumbs: true
 ShowPostNavLinks: true
+ShowCodeCopyButtons: true
 ShowWordCount: true
 ShowRssButtonInSectionTermList: true
 UseHugoToc: true
 cover:
-    image: "" # image path/url
-    alt: "" # alt text
-    caption: "" # display caption under cover
+    image: "cover.png" # image path/url
+    alt: "Wiring" # alt text
+    caption: "ESP32 connected to microphone and humidity sensor" # display caption under cover
     relative: false # when using page bundles set this to true
     # hidden: true # only hide on current single page
 editPost:
@@ -49,11 +50,13 @@ It does this using a microphone sensor to listen for the dinging noise at the en
 - Jumper Wires
 
 ## Wiring
-4 LEDs (Red, Green, Blue, Yellow) to represent 4 packet types (ICMP, TCP, UDP, and Other). Any GPIO pins can be used, in this case, GPIO 2, 5, 21, and 23 were used (NodeMCU ESP-12E). The 220 Ω Resistors are optional.
+
+The DHT11 humidity sensor and microphone module are both powered with 3.3V pins. For the humidity sensor, any GPIO pins can be used. In this case, D1 (GPIO 5) was used. The microphone module, however, must be connected to the one and only analog pin on the NodeMCU which is the A0 pin (GPIO 17).
+
 ![wiring](images/wiring.png)
+
 ![pinout](images/pinout.png)
 This is the pinout for the ESP8266 NodeMCU ESP-12E board. If you would like to use a different ESP8266 board, make sure to check your own pinout online.
----
 
 ## Software
 - Arduino Cloud
