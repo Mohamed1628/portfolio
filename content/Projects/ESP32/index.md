@@ -55,6 +55,9 @@ This program can be used to see TCP, UDP, ICMP, and other incoming packets to an
 ![pinout](images/pinout.png)
 This is the pinout for the ESP32-WROOM-32 board. If you would like to use a different ESP32 board, make sure to check your own pinout online.
 
+## YouTube Demonstration + Explanation
+{{< youtube "oZLEjFB-2dc" >}}
+
 ---
 
 ## Software
@@ -198,8 +201,4 @@ void app_main(void) {
   server_initiation();
 }
 ```
-
-### YouTube Demonstration + Explanation
-{{< youtube "oZLEjFB-2dc" >}}
-
 ---

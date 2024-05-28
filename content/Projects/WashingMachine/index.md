@@ -58,6 +58,11 @@ The DHT11 humidity sensor and microphone module are both powered with 3.3V pins.
 ![pinout](images/pinout.png)
 This is the pinout for the ESP8266 NodeMCU ESP-12E board. If you would like to use a different ESP8266 board, make sure to check your own pinout online.
 
+## YouTube Demonstration + Explanation
+{{< youtube "Php4FqPXtiM" >}}
+
+---
+
 ## Software
 - Arduino Cloud
 - Arduino Create Agent
@@ -153,8 +158,4 @@ void onCycleTimeChange()  {
   // 12:05pm + 45 minute cycle = 12:50 - 5 minutes arduino has been running = 12:45pm
 }
 ```
-
-### YouTube Demonstration + Explanation
-{{< youtube "Php4FqPXtiM" >}}
-
 ---
