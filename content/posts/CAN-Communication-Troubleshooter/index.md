@@ -70,6 +70,8 @@ You only need the Arduino IDE for this project.
 ### Source Code
 See all code and setup instructions in my GitHub repository:
 https://github.com/Mohamed1628/CAN-Troubleshooter
+
+```c++
 #include <mcp_can.h>
 #include <SPI.h>
 
@@ -101,7 +103,6 @@ void setup() {
 byte data[8] = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07};
 int ID = 0x18DAF110; // works with standard and extended CAN IDs
 
-```c++
 void loop() {
   // Here we are sending a CAN data frame to the device from the ID, defined earlier
   CAN_Send(ID, data); // Ex: CAN_Send(0x18DB33F1, data)
