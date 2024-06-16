@@ -20,6 +20,7 @@ disableHLJS: false
 hideSummary: false
 searchHidden: true
 ShowReadingTime: true
+ShowCodeCopyButtons: true
 ShowBreadCrumbs: true
 ShowPostNavLinks: true
 ShowWordCount: true

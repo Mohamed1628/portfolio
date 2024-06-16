@@ -19,6 +19,7 @@ disableShare: true
 disableHLJS: false
 hideSummary: false
 searchHidden: true
+ShowCodeCopyButtons: true
 ShowReadingTime: true
 ShowBreadCrumbs: true
 ShowPostNavLinks: true
