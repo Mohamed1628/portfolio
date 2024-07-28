@@ -1,6 +1,7 @@
 ---
 title: "CAN Communication Troubleshooter"
 date: 2024-03-15T11:30:03+00:00
+summary: 'Learn more about Victor Hugo.'
 # weight: 1
 # aliases: ["/first"]
 tags: ["Arduino Uno", "CAN Communication", "Communication Protocols"]
@@ -12,7 +13,7 @@ TocOpen: true
 draft: false
 hidemeta: false
 comments: true
-description: ""
+description: "This box can be used to verify that an OBDII device can both send and recieve CAN data frames. It does this using a CAN bus module that allows the Arduino Uno to communicate with the device over the CAN High/Low pins of the OBD port."
 canonicalURL: "https://canonical.url/to/page"
 disableHLJS: true # to disable highlightjs
 disableShare: true
@@ -37,7 +38,7 @@ editPost:
     Text: "Suggest Changes" # edit text
     appendFilePath: false # to append file path to Edit link
 ---
-This box can be used to verify that an OBDII device can both send and recieve CAN data frames. It does this using a CAN bus module that allows the Arduino Uno to communicate with the device over the CAN High/Low pins of the OBD port.
+This ieve CAN data frames. It does this using a CAN bus module that allows the Arduino Uno to communicate with the device over the CAN High/Low pins of the OBD port.
 
 ---
 ## Materials
