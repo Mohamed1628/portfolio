@@ -12,7 +12,7 @@ TocOpen: true
 draft: false
 hidemeta: false
 comments: true
-description: "This box can be used to verify that an OBDII device can both send and recieve CAN data frames."
+description: "This box can be used to verify that an OBDII device can both send and recieve CAN data frames. It does this using a CAN bus module that allows the Arduino Uno to communicate with the device over the CAN High/Low pins of the OBD port."
 canonicalURL: "https://canonical.url/to/page"
 disableHLJS: true # to disable highlightjs
 disableShare: true
@@ -36,12 +36,6 @@ editPost:
     URL: "https://github.com/Mohamed1628/CAN-Troubleshooter"
     Text: "Suggest Changes" # edit text
     appendFilePath: false # to append file path to Edit link
----
-
-This program lets the user know if a device can properly send and recieve CAN data frames.
-
-It does this using a CAN bus module that allows the Arduino Uno to communicate with the device over the CAN High/Low pins of the OBD port.
-
 ---
 
 ## Materials
