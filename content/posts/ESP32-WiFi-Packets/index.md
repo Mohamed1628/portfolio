@@ -12,7 +12,7 @@ TocOpen: true
 draft: false
 hidemeta: false
 comments: true
-description: "This program can be used to see TCP, UDP, ICMP, and other incoming packets to an ESP32 board that is connected to a WiFi network."
+description: ""
 canonicalURL: "https://canonical.url/to/page"
 disableHLJS: true # to disable highlightjs
 disableShare: true
@@ -37,7 +37,6 @@ editPost:
     Text: "Suggest Changes" # edit text
     appendFilePath: false # to append file path to Edit link
 ---
-
 This program can be used to see TCP, UDP, ICMP, and other incoming packets to an ESP32 board that is connected to a WiFi network. A different color LED is also turned on when different protocol packets are received (red for ICMP, green for TCP, blue for UDP, and yellow for others). It also outputs the source IP address of each packet. This program uses Visual Studio Code and two extensions: ESP-IDF (Espressif IoT Development Framework) and PlatformIO.
 
 ---
