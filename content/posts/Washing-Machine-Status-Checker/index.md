@@ -37,11 +37,7 @@ editPost:
     Text: "Suggest Changes" # edit text
     appendFilePath: false # to append file path to Edit link
 ---
-This program lets the user know:
-- When a cycle **will** finish
-- When a cycle finished
-- When the door was opened
-It does this using a microphone sensor to listen for the dinging noise at the end of a cycle as well as a humidity sensor to measure when the humidity spikes indicating that steam/vapor is coming out of a freshly opened washing machine. This of course is very simple 
+This program lets the user know when a washing machine cycle finished and when the door was opened. It does this using a microphone sensor to listen for the dinging noise at the end of a cycle as well as a humidity sensor to measure when the humidity spikes indicating that steam/vapor is coming out of a freshly opened washing machine. It can also predict the time that a cycle will finish based on the manufacturer cycle time for different modes (delicate, normal, heavy, etc.)
 ---
 ## Materials
 - ESP8266 NodeMCU ESP-12E 1.0
