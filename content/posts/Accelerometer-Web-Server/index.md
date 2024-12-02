@@ -1,9 +1,9 @@
 ---
-title: "ESP32 Web Server with 3D Object Visualization from Kalman Filtered Accelerometer and Gyroscope Data"
+title: "3D Visualization of Kalman Filtered Accelerometer and Gyroscope Data"
 date: 2024-09-05T11:30:03+00:00
 # weight: 1
 # aliases: ["/first"]
-tags: ["ESP32", "Networking", "MPU6050", "Kalman Filter"]
+tags: ["ESP32", "MPU6050", "Kalman Filter", "JavaScript"]
 categories: ["Projects"]
 author: "Mohamed Alzoubi"
 # author: ["Me", "You"] # multiple authors

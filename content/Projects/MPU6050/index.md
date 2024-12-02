@@ -1,9 +1,9 @@
 ---
-title: "Web Server Accelerometer with Kalman Filtering"
-date: 2024-10-24T11:30:03+00:00
+title: "3D Visualization of Kalman Filtered Accelerometer and Gyroscope Data"
+date: 2024-09-05T11:30:03+00:00
 # weight: 1
 # aliases: ["/first"]
-tags: ["ESP32", "HTTP", "KalmanFilter", "JavaScript"]
+tags: ["ESP32", "MPU6050", "Kalman Filter", "JavaScript"]
 categories: ["Projects"]
 author: "Mohamed Alzoubi"
 # author: ["Me", "You"] # multiple authors
@@ -20,16 +20,16 @@ disableHLJS: false
 hideSummary: false
 searchHidden: true
 ShowReadingTime: true
+ShowCodeCopyButtons: true
 ShowBreadCrumbs: true
 ShowPostNavLinks: true
-ShowCodeCopyButtons: true
 ShowWordCount: true
 ShowRssButtonInSectionTermList: true
 UseHugoToc: true
 cover:
-    image: # image path/url
-    alt: # alt text
-    caption: # display caption under cover
+    image: "" # image path/url
+    alt: "" # alt text
+    caption: "" # display caption under cover
     relative: false # when using page bundles set this to true
     # hidden: true # only hide on current single page
 editPost:
@@ -37,122 +37,262 @@ editPost:
     Text: "Suggest Changes" # edit text
     appendFilePath: false # to append file path to Edit link
 ---
-This program uses an ESP32 to host a web server that 
+This program can be used to visualize incoming accelerometer and gyroscope data from an MPU-6050. It does this by using an ESP32 to host a web server. The server exhibits a prism whose 3D rotation is based on the orientation of the accelerometer. This program was originally made using Visual Studio Code and the extension PlatformIO. However, it still uses the Arduino framework, so if needed the Arduino IDE can be used*.
+
+*Tutorial can be found [here](https://randomnerdtutorials.com/esp32-mpu-6050-web-server/).
+
+To keep the error from accumulating, a simple Kalman Filter is used on the pitch and roll angles. The reason it was not done for the yaw angle (z axis) is because it is not mathematically possible to directly solve for the yaw angle from only the gravitational accelerations in the x, y, and z axes. This is important because for the most basic version of the Kalman Filter to work, it needs to be able to have a physical equation that can create an estimate for that value. This is why many modern accelerometers nowadays come with magnetometers (basically a compass) which can directly measure the accelerometer's heading or yaw angle.
 
 ---
 ## Materials
-- ESP8266 NodeMCU ESP-12E 1.0
-- Electret Microphone Amplifier MAX4466 Module
-- DHT11 Temperature-Humidity Sensor Module
-- Jumper Wires
+- ESP32 DevKit V1 (ESP32-WROOM-32)
+- Micro-USB Cable*
+- MPU-6050
+- Breadboard
+- Jumper Wire(s)
+
+*Must be capable of data transmission for uploading; can **not** be a power only cable
 
 ## Wiring
-
-The DHT11 humidity sensor and microphone module are both powered with 3.3V pins. For the humidity sensor, any GPIO pins can be used. In this case, D1 (GPIO 5) was used. The microphone module, however, must be connected to the one and only analog pin on the NodeMCU which is the A0 pin (GPIO 17).
+The ESP32 communicates with the MPU-6050 using I2C. Simply connect the SCL/SDA pins of the ESP32 and MPU-6050 together, supply it with 3.3 V, and connect it to ground.
 
 ![wiring](images/wiring.png)
 
 ![pinout](images/pinout.png)
-This is the pinout for the ESP8266 NodeMCU ESP-12E board. If you would like to use a different ESP8266 board, make sure to check your own pinout online.
+This is the pinout for the ESP32-WROOM-32 board. If you would like to use a different ESP32 board, make sure to check your own pinout online.
 
-## YouTube Demonstration + Explanation
-{{< youtube "Php4FqPXtiM" >}}
+## YouTube Demonstration
+{{< youtube "UjhBxuVpexo" >}}
 
 ---
 
 ## Software
-- Arduino Cloud
-- Arduino Create Agent
+**Option 1:**
+- Visual Studio Code
+- PlatformIO
+
+**Option 2:**
+- Arduino IDE
 
 ### Source Code
-See code and setup instructions in my GitHub repository:
-https://github.com/Mohamed1628/Washing-Machine-Status
+See all code and setup instructions in my GitHub repository:
+https://github.com/Mohamed1628/Kalman-Filter-MPU6050
+```c
+#include <Arduino.h>
+#include <WiFi.h>
+#include <AsyncTCP.h>
+#include <ESPAsyncWebServer.h>
+#include <Adafruit_MPU6050.h>
+#include <Adafruit_Sensor.h>
+#include <Arduino_JSON.h>
+#include "LittleFS.h"
+#include "KalmanFilter.h"
 
-```c++
-#include "thingProperties.h"
-#include "DHT.h"
-#define DHTPIN 5
-#define DHTTYPE DHT11
+// Declare functions
+void initMPU();
+void initLittleFS();
+void initWiFi();
+String getGyroReadings();
+String getAccReadings();
+String getTemperature();
 
-DHT dht(DHTPIN, DHTTYPE);
 
-const int micPin = 17;                 // analog pin used for microphone data pin
-int sound;                             // integer to store value from microphone
-int humidity;                          // integer to store value from humidity sensor
-const int audioThreshold = 700;        // threshold value that cycle complete tone should surpass
-const int humidityThreshold = 96;      // threshold value that steam from open washer should surpass
+// Replace with your network credentials
+// Note: ESP32 will not connect with ssid such as "John's iPhone"; Change your ssid to be "Johns iPhone" for example (no apostrophe)
+const char* ssid = "YOUR_WIFI_NAME";
+const char* password = "YOUR_WIFI_PASSWORD";
+
+// Create AsyncWebServer object on port 80
+AsyncWebServer server(80);
+
+// Create an Event Source on /events
+AsyncEventSource events("/events");
+
+// Json Variable to Hold Sensor Readings
+JSONVar readings;
+
+// Timer variables
+unsigned long lastTime = 0;  
+unsigned long lastTimeTemperature = 0;
+unsigned long lastTimeAcc = 0;
+unsigned long gyroDelay = 10;
+unsigned long temperatureDelay = 1000;
+unsigned long accelerometerDelay = 200;
+
+// Create a sensor object
+Adafruit_MPU6050 mpu;
+
+sensors_event_t a, g, temp;
+
+float gyroX = 0;
+float gyroY = 0;
+float gyroZ = 0;
+
+float estimateGyroX = 0;
+float estimateGyroY = 0;
+
+float accX, accY, accZ;
+float temperature;
+
+KalmanFilter kalmanX(0.001, 0.003, 0.03);
+KalmanFilter kalmanY(0.001, 0.003, 0.03);
+KalmanFilter kalmanz(0.001, 0.003, 0.03);
+
+float kalX = 0;
+float kalY = 0;
+float kalZ = 0;
+
+// Initialize MPU6050
+void initMPU(){
+  if (!mpu.begin()) {
+    Serial.println("Failed to find MPU6050 chip");
+    while (1) {
+      delay(10);
+    }
+  }
+  Serial.println("MPU6050 Found!");
+}
+
+void initLittleFS() {
+  if (!LittleFS.begin()) {
+    Serial.println("An error has occurred while mounting LittleFS");
+  }
+  Serial.println("LittleFS mounted successfully");
+}
+
+// Initialize WiFi
+void initWiFi() {
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(ssid, password);
+  Serial.println("");
+  Serial.print("Connecting to WiFi...");
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print(".");
+    delay(1000);
+  }
+  Serial.println("");
+  Serial.println(WiFi.localIP());
+}
+
+String getGyroReadings(){
+  mpu.getEvent(&a, &g, &temp);
+  
+  accX = a.acceleration.x;
+  accY = a.acceleration.y;
+  accZ = a.acceleration.z;
+
+  gyroX = g.gyro.x;
+  gyroY = g.gyro.y;
+
+  // Calculate rotational velocities for X and Y axis (rad/s)
+  estimateGyroY = -atan2(accX, sqrt(accY*accY + accZ*accZ));
+  estimateGyroX  = atan2(accY, accZ);
+
+  // Kalman filter
+  kalY = kalmanY.update(estimateGyroY, gyroY);
+  kalX = kalmanX.update(estimateGyroX, gyroX);
+  
+  // No trigonometric equation exists to calculate rotational velocity in the z direction given gravitation accelerations
+  // To simplify things, we check if the value is bigger than the rotation velocity when the accelerometer is static (not moving)
+  // If that is true, then we consider that we have a valid reading, as in the accelerometer is non-static (is moving)
+  float gyroZ_temp = g.gyro.z;
+  if(abs(gyroZ_temp) > 0.03) {
+    // current angle (rad) = last angle (rad) + angular velocity (rad/s) * time(s)
+    gyroZ += gyroZ_temp * 0.01;
+  }
+
+  readings["gyroX"] = String(kalX);
+  readings["gyroY"] = String(kalY);
+  readings["gyroZ"] = String(gyroZ);
+
+  String jsonString = JSON.stringify(readings);
+  return jsonString;
+}
+
+String getAccReadings(){
+  mpu.getEvent(&a, &g, &temp);
+  // Get current acceleration values
+  accX = a.acceleration.x;
+  accY = a.acceleration.y;
+  accZ = a.acceleration.z;
+  readings["accX"] = String(accX);
+  readings["accY"] = String(accY);
+  readings["accZ"] = String(accZ);
+  String accString = JSON.stringify (readings);
+  return accString;
+}
+
+String getTemperature(){
+  mpu.getEvent(&a, &g, &temp);
+  temperature = temp.temperature;
+  return String(temperature);
+}
 
 void setup() {
-  // Initialize serial and dht sensor:
-  Serial.begin(9600); //9600 is baud rate
-  dht.begin();
-  delay(1500); 
+  Serial.begin(115200);
+  initWiFi();
+  initLittleFS();
+  initMPU();
 
-  // Defined in thingProperties.h
-  initProperties();
-  pinMode(micPin, INPUT); //setting microphone pin as input
- 
-  // Connect to Arduino IoT Cloud
-  ArduinoCloud.begin(ArduinoIoTPreferredConnection);
-  
-  cycleStatus = false;                 // initializing cycle status to false (cycle just started)
-  doorStatus = false;                  // initializing door status to false (door should be closed initially)
+  // Handle Web Server
+  server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
+    request->send(LittleFS, "/index.html", "text/html");
+  });
 
-  setDebugMessageLevel(2);
-  ArduinoCloud.printDebugInfo();
+  server.serveStatic("/", LittleFS, "/");
+
+  server.on("/reset", HTTP_GET, [](AsyncWebServerRequest *request){
+    gyroX=0;
+    gyroY=0;
+    gyroZ=0;
+    request->send(200, "text/plain", "OK");
+  });
+
+  server.on("/resetX", HTTP_GET, [](AsyncWebServerRequest *request){
+    gyroX=0;
+    request->send(200, "text/plain", "OK");
+  });
+
+  server.on("/resetY", HTTP_GET, [](AsyncWebServerRequest *request){
+    gyroY=0;
+    request->send(200, "text/plain", "OK");
+  });
+
+  server.on("/resetZ", HTTP_GET, [](AsyncWebServerRequest *request){
+    gyroZ=0;
+    request->send(200, "text/plain", "OK");
+  });
+
+  // Handle Web Server Events
+  events.onConnect([](AsyncEventSourceClient *client){
+    if(client->lastId()){
+      Serial.printf("Client reconnected! Last message ID that it got is: %u\n", client->lastId());
+    }
+    // send event with message "hello!", id current millis
+    // and set reconnect delay to 1 second
+    client->send("hello!", NULL, millis(), 10000);
+  });
+  server.addHandler(&events);
+
+  server.begin();
 }
 
 void loop() {
-  ArduinoCloud.update();
-  float h = dht.readHumidity();
-  sound = analogRead(micPin);          // reading in microphone values to variable sound
-  humidity = h;                        // reading in humidity values to variable humidity
-
-  // Uncomment to see sensor values for adjusting threshold
-  // Serial.println("Sound: ");         
-  // Serial.print(sound);
-  // Serial.println("Humidity: ");
-  // Serial.println(humidity);  
-  
-  // if sound is still below threshold then do nothing
-  if (sound < audioThreshold) {
-    // do nothing...
-  } 
-  
-  // else set status to true
-  else if (cycleStatus == false) {
-    cycleStatus = true; //complete tone was played
-    completeTime = ArduinoCloud.getLocalTime();
+  if ((millis() - lastTime) > gyroDelay) {
+    // Send Events to the Web Server with the Sensor Readings
+    events.send(getGyroReadings().c_str(),"gyro_readings",millis());
+    lastTime = millis();
   }
-    
-  else {
-    // do nothing since cycleStatus is already true or not above threshold
+  if ((millis() - lastTimeAcc) > accelerometerDelay) {
+    // Send Events to the Web Server with the Sensor Readings
+    events.send(getAccReadings().c_str(),"accelerometer_readings",millis());
+    lastTimeAcc = millis();
   }
-  
-  // if humidity is still below threshold then do nothing
-  if (humidity < humidityThreshold) {
-    //do nothing...
-  } 
-    
-  // else set status to true
-  else if (doorStatus == false) {
-    doorStatus = true; //door is open
-    openTime = ArduinoCloud.getLocalTime();
-  } 
-  else {
-    // do nothing since doorStatus is already true or not above threshold
+  if ((millis() - lastTimeTemperature) > temperatureDelay) {
+    // Send Events to the Web Server with the Sensor Readings
+    events.send(getTemperature().c_str(),"temperature_reading",millis());
+    lastTimeTemperature = millis();
   }
-  
-}
-
-void onCycleTimeChange()  {
-
-  completeTime = ArduinoCloud.getLocalTime() + (cycleTime*60) - (0.001*millis()); 
-  // current time + cycle time - offset of how long arduino has been running
-
-  // For example:
-  // Let's say true start time was 12:00pm
-  // 12:05pm + 45 minute cycle = 12:50 - 5 minutes arduino has been running = 12:45pm
 }
 ```
 ---
