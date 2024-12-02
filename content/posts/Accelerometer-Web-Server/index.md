@@ -39,9 +39,9 @@ editPost:
 ---
 This program can be used to visualize incoming accelerometer and gyroscope data from an MPU-6050. It does this by using an ESP32 to host a web server. The server exhibits a prism whose 3D rotation is based on the orientation of the accelerometer. This program was originally made using Visual Studio Code and the extension PlatformIO. However, it still uses the Arduino framework, so if needed the Arduino IDE can be used*.
 
-*Tutorial can be found [here](https://randomnerdtutorials.com/esp32-mpu-6050-web-server/).
-
 To keep the error from accumulating, a simple Kalman Filter is used on the pitch and roll angles. The reason it was not done for the yaw angle (z axis) is because it is not mathematically possible to directly solve for the yaw angle from only the gravitational accelerations in the x, y, and z axes. This is important because for the most basic version of the Kalman Filter to work, it needs to be able to have a physical equation that can create an estimate for that value. This is why many modern accelerometers nowadays come with magnetometers (basically a compass) which can directly measure the accelerometer's heading or yaw angle.
+
+*Tutorial can be found [here](https://randomnerdtutorials.com/esp32-mpu-6050-web-server/).
 
 ---
 ## Materials
