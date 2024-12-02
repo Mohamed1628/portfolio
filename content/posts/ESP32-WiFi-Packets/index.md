@@ -61,7 +61,7 @@ This is the pinout for the ESP32-WROOM-32 board. If you would like to use a diff
 ---
 
 ## Software
-- Virtual Studio Code
+- Visual Studio Code
 - ESP-IDF
 - PlatformIO
 
